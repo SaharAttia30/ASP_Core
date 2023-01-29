@@ -1,0 +1,48 @@
+﻿@page
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Commom_ASP_Core_Razor.Pages.IndexModel
+<html>
+<head>
+    <style type=text/css>
+        .buttonInTable {
+            background: #FF0000;
+            font-family: Arial;
+            font-size: XX-Large;
+            width: 60px;
+            height: 60px;
+        }
+
+    </style>
+</head>
+<body>
+    <form method="post">
+            <div>
+                <table>
+                    @for (int i = 0; i < 4; i++)
+                    {
+                        <tr>
+                            @for (int j = 0; j < 4; j++)
+                            {
+                                <td>
+                                <input type="submit" name="ABCD" id="@(4 * i + j)" value="@Model.ArrayModel[4 * i + j].strText" asp-page-handler="MyClick" style="visibility:@Model.ArrayModel[4 * i + j].Visible; background-color:@Model.ArrayModel[4*i+j].Color" class='buttonInTable' />
+                               </td>
+                            }
+                        </tr>
+                    }
+                </table>
+            </div>
+    </form>
+    @if (ViewData["Message"] != null)
+    {
+        <script type="text/javascript">
+
+            setTimeout(function () {
+                if (confirm('Game is over! New Game?'))
+                    window.location.href = "http://localhost:5047";
+            }, 100);
+
+        </script>
+    }
+
+</body>
+</html>
